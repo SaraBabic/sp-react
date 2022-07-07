@@ -1,0 +1,61 @@
+.slider{
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+
+}
+.slides{
+    width: 500%;
+    height: 700px;
+    display: flex;
+}
+
+.slides input{
+    display: none;
+}
+
+@media only screen and (max-width: 1700px) {
+
+    .slider{
+        height: 500px;
+    }
+    .about{
+        height: 310px;
+        top: 200px;
+        padding-left: 200px;
+    }
+
+    .heiko{
+        width: 280px;
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 1300px) {
+    .slider{
+        height: 400px;
+    }
+    .about{
+        position: absolute;
+        height: 268px;
+        top: 150px;
+        padding-left: 100px;
+    }
+
+    .heiko{
+        width: 200px;
+        padding: 30px 70px 5px 0;
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .slide img{
+        height: 300px;
+    }
+    .slider{
+        height: 300px;
+    }
+    .about{
+        top: 110px;
+        padding-left: 30px;
+    }
+}

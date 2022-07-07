@@ -1,0 +1,52 @@
+.navigation-auto{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 660px;
+}
+
+.navigation-auto div{
+    border: 2px solid #ffffff;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+}
+
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background: #B50014;
+}
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    background: #B50014;
+}
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    background: #B50014;
+}
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    background: #B50014;
+}
+#radio5:checked ~ .navigation-auto .auto-btn5{
+    background: #B50014;
+}
+
+@media only screen and (max-width: 1700px) {
+    .navigation-auto{
+        margin-top: 460px;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .navigation-auto{
+        margin-top: 360px;
+    }
+}
+
+@media only screen and (max-width: 920px) {
+    .navigation-auto{
+        display: none;
+    }
+}

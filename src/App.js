@@ -1,6 +1,6 @@
 import Button from "./components/Button";
 import React, { useEffect } from 'react';
-import SliderContainer from "./components/SliderContainer";
+import SliderContainer from "./components/slider/SliderContainer";
 
 
 function App() {
@@ -90,7 +90,7 @@ function App() {
             </div>
             <div className="header-bottom">
               <img src="./images/clock.svg" alt="clock" className="clock"/>
-                <p className="text-big-screen">Opentime: &nbspDi.- Fr.: 07:00 - 13:00 und 15:00 - 18:30. &nbspSa.: 7:30 - 12:30</p>
+                <p className="text-big-screen">Opentime: Di.- Fr.: 07:00 - 13:00 und 15:00 - 18:30. &nbspSa.: 7:30 - 12:30</p>
                 <div className="text-small-screen">
                   <p className="christmas">Christmas opentime:</p>
                   <p>Di.- Fr.: 07:00 - 13:00 und 15:00 - 18:30. &nbspSa.: 7:30 - 12:30</p>

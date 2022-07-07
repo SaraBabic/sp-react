@@ -1,0 +1,25 @@
+.slide{
+    width: 20%;
+    transition: 2s;
+}
+.slide img{
+    width: 100%;
+    height: 700px;
+}
+
+@media only screen and (max-width: 1700px) {
+    .slide img {
+        height: 500px;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .slide img {
+        height: 400px;
+    }
+}
+@media only screen and (max-width: 920px) {
+    .slide img {
+        height: 300px;
+    }
+}
