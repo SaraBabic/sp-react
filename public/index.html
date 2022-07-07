@@ -3,6 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href="./main.css" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,10 +31,10 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>BRATH</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +46,172 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.3/gsap.min.js"></script>
+
+    <script type="text/javascript">
+
+
+
+      document.addEventListener('DOMContentLoaded', function () {
+
+
+        //menu
+        const body = document.querySelector("body");
+        const navbar = document.querySelector(".navbar");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        const downloadIcon = document.querySelector(".download");
+        const about = document.querySelector(".about");
+        menuBtn.onclick = ()=>{
+          navbar.classList.add("show");
+          menuBtn.classList.add("hide");
+          body.classList.add("disabled");
+          downloadIcon.classList.add("hide");
+          about.classList.add("hide");
+        }
+        cancelBtn.onclick = ()=>{
+          body.classList.remove("disabled");
+          navbar.classList.remove("show");
+          menuBtn.classList.remove("hide");
+          downloadIcon.classList.remove("hide");
+          about.classList.remove("hide");
+        }
+        window.onscroll = ()=>{
+          this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+        }
+
+
+
+
+
+
+        /*card slider*/
+
+        const {gsap, imagesLoaded} = window;
+
+        const buttons = {
+          prev: document.querySelector(".btn--left"),
+          next: document.querySelector(".btn--right"),
+        };
+        console.log(document.querySelector(".btn--left"));
+        const cardsContainerEl = document.querySelector(".cards__wrapper");
+
+        buttons.next.addEventListener("click", () => swapCards("right"));
+
+        buttons.prev.addEventListener("click", () => swapCards("left"));
+
+        function swapCards(direction) {
+          const currentCardEl = cardsContainerEl.querySelector(".current--card");
+          const previousCardEl = cardsContainerEl.querySelector(".previous--card");
+          const nextCardEl = cardsContainerEl.querySelector(".next--card");
+
+          swapCardsClass();
+
+          removeCardEvents(currentCardEl);
+
+          function swapCardsClass() {
+            currentCardEl.classList.remove("current--card");
+            previousCardEl.classList.remove("previous--card");
+            nextCardEl.classList.remove("next--card");
+
+
+            currentCardEl.style.zIndex = "50";
+
+            if (direction === "right") {
+              previousCardEl.style.zIndex = "20";
+              nextCardEl.style.zIndex = "30";
+
+
+              currentCardEl.classList.add("previous--card");
+              previousCardEl.classList.add("next--card");
+              nextCardEl.classList.add("current--card");
+
+            } else if (direction === "left") {
+              previousCardEl.style.zIndex = "30";
+              nextCardEl.style.zIndex = "20";
+
+
+              currentCardEl.classList.add("next--card");
+              previousCardEl.classList.add("current--card");
+              nextCardEl.classList.add("previous--card");
+
+            }
+          }
+        }
+
+
+        function updateCard(e) {
+          const card = e.currentTarget;
+          const box = card.getBoundingClientRect();
+          const centerPosition = {
+            x: box.left + box.width / 2,
+            y: box.top + box.height / 2,
+          };
+          let angle = Math.atan2(e.pageX - centerPosition.x, 0) * (35 / Math.PI);
+          gsap.set(card, {
+            "--current-card-rotation-offset": `${angle}deg`,
+          });
+        }
+
+        function resetCardTransforms(e) {
+          const card = e.currentTarget;
+          gsap.set(card, {
+            "--current-card-rotation-offset": 0,
+          });
+        }
+
+        function initCardEvents() {
+          const currentCardEl = cardsContainerEl.querySelector(".current--card");
+          currentCardEl.addEventListener("pointermove", updateCard);
+          currentCardEl.addEventListener("pointerout", (e) => {
+            resetCardTransforms(e);
+          });
+        }
+
+        initCardEvents();
+
+        function removeCardEvents(card) {
+          card.removeEventListener("pointermove", updateCard);
+        }
+
+        function init() {
+
+          let tl = gsap.timeline();
+
+          tl.to(cardsContainerEl.children, {
+            delay: 0.15,
+            duration: 0.5,
+            stagger: {
+              ease: "power4.inOut",
+              from: "right",
+              amount: 0.1,
+            },
+            "--card-translateY-offset": "0%",
+          })
+                  .to(
+                          [buttons.prev, buttons.next],
+                          {
+                            duration: 0.4,
+                            opacity: 1,
+                            pointerEvents: "all",
+                          },
+                          "-=0.4"
+                  );
+        }
+
+        gsap.timeline().call(() => init());
+      });
+
+
+
+
+
+
+
+    </script>
+
+
+
   </body>
 </html>
