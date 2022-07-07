@@ -5,7 +5,7 @@ function RadioInput(props){
     return(
         buttons.map(btnNumber =>{
                 let btnId = "radio" + btnNumber;
-                return <input type="radio" name="radio-btn" id={btnId}/>
+                return <input type="radio" name="radio-btn" id={btnId} key={btnNumber}/>
             })
     );
 }

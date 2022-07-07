@@ -32,7 +32,7 @@ const sliderImages = [
          }
 
          return (
-             <div className={slideClass}>
+             <div className={slideClass}  key={index.toString()}>
                  <img src={image.path} alt={image.alt}/>
              </div>
          );
